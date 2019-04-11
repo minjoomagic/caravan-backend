@@ -1,31 +1,7 @@
 Rails.application.routes.draw do
-  get 'user_items/index'
-  get 'user_items/create'
-  get 'user_items/show'
-  get 'user_items/update'
-  get 'user_items/edit'
-  get 'user_items/destroy'
-  get 'user_items/new'
-  get 'items/index'
-  get 'items/create'
-  get 'items/show'
-  get 'items/update'
-  get 'items/edit'
-  get 'items/destroy'
-  get 'items/new'
-  get 'categories/index'
-  get 'categories/create'
-  get 'categories/show'
-  get 'categories/update'
-  get 'categories/edit'
-  get 'categories/destroy'
-  get 'categories/new'
-  get 'users/index'
-  get 'users/create'
-  get 'users/show'
-  get 'users/update'
-  get 'users/edit'
-  get 'users/destroy'
-  get 'users/new'
+  resources :items
+  resources :users
+  resources :categories
+  resources :user_items
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
