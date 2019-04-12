@@ -1,13 +1,9 @@
 class UsersController < ApplicationController
+  skip_before_action :authorized, only: [:create]
+
   def index
     @users = User.all
     render json: @users
-  end
-
-  def show
-  end
-
-  def new
   end
 
   def create
@@ -26,25 +22,14 @@ class UsersController < ApplicationController
     token = request.headers["authorization"]
     id = JWT.decode(token, "secret")[0]["user_id"]
     @user = User.find(id)
-
     if @user.valid?
       render json: { user: {username: @user.username}}
     end
   end
 
-
-  def edit
-  end
-
-  def update
-  end
-
-  def destroy
-  end
-
   private
 
   def user_params
-   params.require(:user).permit(:username, :password)
+   params.require(:auth.user).permit(:username, :password)
   end
 end

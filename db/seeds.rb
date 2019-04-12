@@ -8,7 +8,7 @@
 
 puts "starting my seed"
 
-User.create(username:"Rob", password:"a", address:"316 patchen avenue", phone_number:"12345678")
+# User.create(username:"Rob", password:"a", address:"316 patchen avenue", phone_number:"12345678")
 
 Item.create(name:"table", image_url:"https://www.ikea.com/PIAimages/0517435_PE640691_S3.JPG", price:100 , category_id:3, description:"very good")
 Item.create(name:"radio", image_url:"https://www.ggelectronics.com/files/image/attachment/1263/CFDS70BLK2.jpg", price:85, category_id:2, description:"very good")
