@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  skip_before_action :authorized, only: [:create, :get_user]
+  skip_before_action :authorized, only: [:create, :get_user, :index]
 
   def index
     @users = User.all
@@ -8,7 +8,7 @@ class UsersController < ApplicationController
 
   def create
   @user = User.create(user_params)
-
+  byebug
     if @user.valid?
       token = JWT.encode({user_id: @user.id}, "secret")
       render json: { user: {username: @user.username}, token: token}, status: :created
@@ -19,11 +19,12 @@ class UsersController < ApplicationController
 
 
   def get_user
-    # byebug
     token = request.headers["authorization"]
+    # byebug
     id = JWT.decode(token, "secret")[0]["user_id"]
     @user = User.find(id)
     if @user.valid?
+      # byebug
       render json: { user: {username: @user.username}}
     end
   end
@@ -34,7 +35,7 @@ class UsersController < ApplicationController
     if params[:auth]
       params.require(:auth.user).permit(:username, :password)
     else
-      # byebug
+      byebug
       params.require("user").permit(:username, :password)
     end
   end

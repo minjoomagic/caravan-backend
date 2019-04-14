@@ -12,6 +12,7 @@ class AuthController < ApplicationController
     else
       render json: { message: 'Invalid username or password' }, status: :unauthorized
     end
+    # byebug
   end
 
   private

@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :items
-  resources :users
+  resources :users , only: [:create, :index]
   resources :categories
   resources :user_items
 
