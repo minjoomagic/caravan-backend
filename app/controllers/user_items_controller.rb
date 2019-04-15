@@ -1,4 +1,6 @@
 class UserItemsController < ApplicationController
+  skip_before_action :authorized
+
   def index
     @user_items = UserItem.all
     render json: @user_items
@@ -11,6 +13,12 @@ class UserItemsController < ApplicationController
   end
 
   def create
+    # find user
+    # user = User.find_by(username: params["username"])
+
+    # find item
+    # create user_item
+    byebug
   end
 
   def edit
