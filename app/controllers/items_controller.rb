@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  skip_before_action :authorized, only: [:index, :create]
+  skip_before_action :authorized, only: [:index, :create, :update]
   # before_action :authorized, only: [:create]
 
   def index
@@ -29,6 +29,16 @@ class ItemsController < ApplicationController
   end
 
   def update
+    item = Item.find(params["item"]["id"])
+    item.sold = true
+    item.save
+    seller = User.find_by(username:params["item"]["users"][0]["username"])
+    buyer = User.find_by(username: params["user"]["username"])
+    userItem = UserItem.find_by(user_id: seller.id)
+    userItem.user_id = buyer.id
+    userItem.save
+    # render :
+    # byebug
   end
 
   def destroy
